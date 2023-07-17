@@ -12,7 +12,7 @@
 
 import os
 import subprocess
-import commands
+
 
 if not os.path.exists('output'):
     os.makedirs('output/stdout')
