@@ -105,7 +105,7 @@ for i in range(3*num_batches+1,4*num_batches+1):
     cmd = "sbatch --depend=afterok:{} run_single_batch.sh {} {}".format(zip_jobnum,i,ts_length)
     status, jobcmd = commands.getstatusoutput(cmd)
     jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
-    Add to list of job numbers
+    #Add to list of job numbers
     list_jobnums4.append(jobnum)
     if (status == 0 ):
         print (cmd + "    Job number: {}".format(jobnum))
