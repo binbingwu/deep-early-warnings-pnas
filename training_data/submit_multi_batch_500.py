@@ -13,7 +13,6 @@
 import os
 import subprocess
 
-
 if not os.path.exists('output'):
     os.makedirs('output/stdout')
 
@@ -27,10 +26,10 @@ list_jobnums=[]
 for i in range(3*num_batches+1,4*num_batches+1):
     cmd = "sbatch run_single_batch.sh {} {}".format(i,ts_length)
     completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-    jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+    jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
     # Add to list of job numbers
     list_jobnums.append(jobnum)
-    if (status == 0):
+    if (completed_process.returncode == 0):
         print (cmd + "   Job number: {}".format(jobnum))
     else:
         print ("Error submitting Job {}".format(jobnum))
@@ -41,7 +40,7 @@ list_jobnums_str = [":"+str(i) for i in list_jobnums]
 comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(1,num_batches)
 completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+zip_jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
 print( cmd + "    Job number: {}".format(zip_jobnum))
 
 
@@ -51,10 +50,10 @@ list_jobnums2=[]
 for i in range(4*num_batches+1,5*num_batches+1):
     cmd = "sbatch --depend=afterok:{} run_single_batch.sh {} {}".format(zip_jobnum,i,ts_length)
     completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-    jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+    jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
 	# Add to list of job numbers
     list_jobnums2.append(jobnum)
-    if (status == 0 ):
+    if (completed_process.returncode == 0 ):
         print (cmd + "    Job number: {}".format(jobnum))
     else:
         print ("Error submitting Job")
@@ -65,7 +64,7 @@ list_jobnums_str = [":"+str(i) for i in list_jobnums2]
 comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(2,num_batches)
 completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+zip_jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
 print (cmd + "    Job number: {}".format(zip_jobnum))
 
 
@@ -78,10 +77,10 @@ list_jobnums3=[]
 for i in range(2*num_batches+1,3*num_batches+1):
    cmd = "sbatch --depend=afterok:{} run_single_batch.sh {} {}".format(zip_jobnum,i,ts_length)
    completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-   jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+   jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
    # Add to list of job numbers
    list_jobnums3.append(jobnum)
-   if (status == 0 ):
+   if (completed_process.returncode == 0 ):
        print (cmd + "    Job number: {}".format(jobnum))
    else:
        print ("Error submitting Job")
@@ -92,7 +91,7 @@ list_jobnums_str = [":"+str(i) for i in list_jobnums3]
 comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(3,num_batches)
 completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+zip_jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
 print (cmd + "    Job number: {}".format(zip_jobnum))
      
      
@@ -104,10 +103,10 @@ list_jobnums4=[]
 for i in range(3*num_batches+1,4*num_batches+1):
     cmd = "sbatch --depend=afterok:{} run_single_batch.sh {} {}".format(zip_jobnum,i,ts_length)
     completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-    jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+    jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
     #Add to list of job numbers
     list_jobnums4.append(jobnum)
-    if (status == 0 ):
+    if (completed_process.returncode == 0 ):
         print (cmd + "    Job number: {}".format(jobnum))
     else:
         print ("Error submitting Job")
@@ -118,7 +117,7 @@ list_jobnums_str = [":"+str(i) for i in list_jobnums4]
 comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(4,num_batches)
 completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+zip_jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
 print (cmd + "    Job number: {}".format(zip_jobnum))
 
 
@@ -129,10 +128,10 @@ list_jobnums5=[]
 for i in range(4*num_batches+1,5*num_batches+1):
     cmd = "sbatch --depend=afterok:{} run_single_batch.sh {}".format(zip_jobnum,i,ts_length)
     completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-    jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+    jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
     #Add to list of job numbers
     list_jobnums5.append(jobnum)
-    if (status == 0 ):
+    if (completed_process.returncode == 0 ):
         print (cmd + "    Job number: {}".format(jobnum))
     else:
         print ("Error submitting Job")
@@ -144,7 +143,7 @@ list_jobnums_str = [":"+str(i) for i in list_jobnums5]
 comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(5,num_batches)
 completed_process = subprocess.run(cmd, shell=True, check=False, text=True, capture_output=True)
-zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
+zip_jobnum=[int(s) for s in completed_process.stdout.split() if s.isdigit()][0]
 print (cmd + "    Job number: {}".format(zip_jobnum))
 
 
