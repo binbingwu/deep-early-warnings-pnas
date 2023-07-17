@@ -19,8 +19,8 @@ if not os.path.exists('output'):
 
 
 # Define number of batches for each submission
-num_batches = 25
-ts_length = 500
+num_batches = 150
+ts_length = 60
 
 # Submit the first set of jobs
 list_jobnums=[]
@@ -31,9 +31,9 @@ for i in range(3*num_batches+1,4*num_batches+1):
     # Add to list of job numbers
     list_jobnums.append(jobnum)
     if (status == 0):
-        print cmd + "   Job number: {}".format(jobnum)
+        print (cmd + "   Job number: {}".format(jobnum))
     else:
-        print "Error submitting Job {}".format(jobnum)
+        print ("Error submitting Job {}".format(jobnum))
 
 # Submit job to combine batch data, zip files
 # and delete originals (to keep within disk quota)
@@ -42,7 +42,7 @@ comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(1,num_batches)
 status, jobcmd = commands.getstatusoutput(cmd)
 zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
-print cmd + "    Job number: {}".format(zip_jobnum)
+print( cmd + "    Job number: {}".format(zip_jobnum))
 
 
 
@@ -55,9 +55,9 @@ for i in range(4*num_batches+1,5*num_batches+1):
 	# Add to list of job numbers
     list_jobnums2.append(jobnum)
     if (status == 0 ):
-        print cmd + "    Job number: {}".format(jobnum)
+        print (cmd + "    Job number: {}".format(jobnum))
     else:
-        print "Error submitting Job"
+        print ("Error submitting Job")
             
 # Submit job to combine batch data, zip files
 # and delete originals (to keep within disk quota)
@@ -66,7 +66,7 @@ comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(2,num_batches)
 status, jobcmd = commands.getstatusoutput(cmd)
 zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
-print cmd + "    Job number: {}".format(zip_jobnum)
+print (cmd + "    Job number: {}".format(zip_jobnum))
 
 
 
@@ -82,9 +82,9 @@ for i in range(2*num_batches+1,3*num_batches+1):
    # Add to list of job numbers
    list_jobnums3.append(jobnum)
    if (status == 0 ):
-       print cmd + "    Job number: {}".format(jobnum)
+       print (cmd + "    Job number: {}".format(jobnum))
    else:
-       print "Error submitting Job"
+       print ("Error submitting Job")
          
 # Submit job to combine batch data, zip files
 # and delete originals (to keep within disk quota)
@@ -93,7 +93,7 @@ comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(3,num_batches)
 status, jobcmd = commands.getstatusoutput(cmd)
 zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
-print cmd + "    Job number: {}".format(zip_jobnum)
+print (cmd + "    Job number: {}".format(zip_jobnum))
      
      
         
@@ -108,9 +108,9 @@ for i in range(3*num_batches+1,4*num_batches+1):
     Add to list of job numbers
     list_jobnums4.append(jobnum)
     if (status == 0 ):
-        print cmd + "    Job number: {}".format(jobnum)
+        print (cmd + "    Job number: {}".format(jobnum))
     else:
-        print "Error submitting Job"
+        print ("Error submitting Job")
     
 # Submit job to combine batch data, zip files
 # and delete originals (to keep within disk quota)
@@ -119,7 +119,7 @@ comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(4,num_batches)
 status, jobcmd = commands.getstatusoutput(cmd)
 zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
-print cmd + "    Job number: {}".format(zip_jobnum)
+print (cmd + "    Job number: {}".format(zip_jobnum))
 
 
 
@@ -133,9 +133,9 @@ for i in range(4*num_batches+1,5*num_batches+1):
     Add to list of job numbers
     list_jobnums5.append(jobnum)
     if (status == 0 ):
-        print cmd + "    Job number: {}".format(jobnum)
+        print (cmd + "    Job number: {}".format(jobnum))
     else:
-        print "Error submitting Job"
+        print ("Error submitting Job")
     
 
 # Submit job to combine batch data, zip files
@@ -145,7 +145,7 @@ comb_str = "".join(list_jobnums_str)
 cmd = "sbatch --depend=afterok"+comb_str+" combine_batches.sh {} {}".format(5,num_batches)
 status, jobcmd = commands.getstatusoutput(cmd)
 zip_jobnum=[int(s) for s in jobcmd.split() if s.isdigit()][0]
-print cmd + "    Job number: {}".format(zip_jobnum)
+print (cmd + "    Job number: {}".format(zip_jobnum))
 
 
 
