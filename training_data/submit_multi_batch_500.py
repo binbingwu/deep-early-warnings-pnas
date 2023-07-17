@@ -18,7 +18,7 @@ if not os.path.exists('output'):
 
 
 # Define number of batches for each submission
-num_batches = 150
+num_batches = 30
 ts_length = 60
 
 # Submit the first set of jobs
